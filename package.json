@@ -1,0 +1,28 @@
+{
+  "name": "favour",
+  "version": "1.0.0",
+  "description": "uber for general tasks",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MalcomXLi/Favour.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MalcomXLi/Favour/issues"
+  },
+  "homepage": "https://github.com/MalcomXLi/Favour#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "nodemon": "^1.10.2",
+    "pg": "^6.1.0"
+  }
+}
