@@ -1,5 +1,6 @@
 function postUserData(userInfo) {
-    var url = 'http://146.148.60.107/user';
+    console.log('fuck');
+    var url = '/user';
     $.ajax({
       type: "POST",
       url: url,
@@ -83,9 +84,10 @@ FB.getLoginStatus(function(response) {
 function testAPI() {
   console.log('Welcome!  Fetching your information.... ');
   FB.api('/me?fields=bio,about,birthday,email,first_name,last_name', function(response) {
-console.log('fuck you vim:= ', response);
+    console.log('fuck you vim:= ', response);
     console.log('Successful login for: ' + response.name);
     document.getElementById('status').innerHTML =
-      'Thanks for logging in, ' + response.name + '!';
+      'Thanks for logging in, ' + response.first_name + '!';
+    postUserData(response);    
   });
 }

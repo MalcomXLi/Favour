@@ -33,6 +33,7 @@ VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 
 app.post('/user', function (req, res) {
   console.log("FUCK : ", req.body);
+  
 });
 
 app.post('/login', function(req, res) {
