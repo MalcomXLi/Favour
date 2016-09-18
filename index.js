@@ -32,7 +32,9 @@ VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 */
 
 app.post('/user', function (req, res) {
-  console.log("FUCK : ", req.body);
+  var user = req.body;
+  console.log("FUCK : ", user);
+  createUser(user);
 });
 
 app.post('/login', function(req, res) {
@@ -84,6 +86,38 @@ app.get('/getPersonByUsername', function(req, res) {
   }
 });
 
+function createUser(user) {
+  try{
+    // Get a Postgres client from the connection pool
+    pg.connect(connectionString, function(err, client, done) {
+      // Handle connection errors
+      if(err) {
+        done();
+        console.log(err);
+        return res.status(500).json({ success: false, data: err});
+      }
+
+      var query = client.query("INSERT INTO accounts (firstname, lastname, username, phonenumber, email)\
+                                VALUES ($1, $2, $3, $4, $5)", [user.first_name, user.last_name, '416-343-3433', user.email]);
+
+      query.on('end', function(err) {
+        if (err) {
+          throw (err);
+        }
+        done();
+        res.send('okay did it');
+      });
+
+      query.on('error', function(err) {
+        console.log(err);
+        res.status(500).json({ success: false, data: err});
+        done();
+      });
+    });
+  } catch(ex) {
+    console.log('error', ex);
+  }
+}
 var server = app.listen(port, function (cb) {
   var port = server.address().port;
   console.log('Listening on port http://localhost:%s', port);
