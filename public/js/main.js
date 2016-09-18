@@ -1,4 +1,4 @@
-var app = angular.module('favour', ['ngRoute'])
+var app = angular.module('favour', ['ngRoute', 'ngMaterial'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
