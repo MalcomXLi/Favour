@@ -12,6 +12,7 @@ var connectionString = process.env.DATABASE_URL || 'postgresql://root@104.196.18
 var client = new pg.Client(connectionString);
 
 
+app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
@@ -19,26 +20,25 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(__dirname, 'public')));
 
 /*
-CREATE TABLE accounts( 
-  firstname STRING(50), 
-  lastname STRING(50), 
-  username STRING(50) NOT NULL, 
-  phonenumber STRING(20), 
+CREATE TABLE accounts(
+  firstname STRING(50),
+  lastname STRING(50),
+  username STRING(50) NOT NULL,
+  phonenumber STRING(20),
   email STRING(50)
 );
-INSERT INTO accounts (firstname, lastname, username, phonenumber, email) 
+INSERT INTO accounts (firstname, lastname, username, phonenumber, email)
 VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 */
 
 app.get('/', function (req, res) {
-  // res.send('Hello World!');
+  
 });
 
 app.post('/login', function(req, res) {
   try {
     var userId = req.body.userId;
     var authToken = req.body.authToken;
-    p
   } catch(e) {
     console.log('error', e);
   }
