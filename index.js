@@ -34,7 +34,7 @@ VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 app.post('/user', function (req, res) {
   var user = req.body;
   console.log("FUCK : ", user);
-  createUser(user);
+  createUser(user, res);
 });
 
 app.post('/login', function(req, res) {
@@ -86,26 +86,23 @@ app.get('/getPersonByUsername', function(req, res) {
   }
 });
 
-function createUser(user) {
+function createUser(user, res) {
   try{
     // Get a Postgres client from the connection pool
     pg.connect(connectionString, function(err, client, done) {
       // Handle connection errors
       if(err) {
         done();
-        console.log(err);
+        console.log("ERROR : ", err);
         return res.status(500).json({ success: false, data: err});
       }
+ 	console.log("ASASA");
+      var query = client.query("INSERT INTO users.accounts (firstname, lastname, username, phonenumber, email)\
+                                VALUES ($1, $2, $3, $4, $5)", [user.first_name, user.last_name,'malcom', '416-343-3433', user.email]);
 
-      var query = client.query("INSERT INTO accounts (firstname, lastname, username, phonenumber, email)\
-                                VALUES ($1, $2, $3, $4, $5)", [user.first_name, user.last_name, '416-343-3433', user.email]);
-
-      query.on('end', function(err) {
-        if (err) {
-          throw (err);
-        }
+      query.on('end', function(results) {
         done();
-        res.send('okay did it');
+        return res.status(200).send(results);
       });
 
       query.on('error', function(err) {
