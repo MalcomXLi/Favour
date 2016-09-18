@@ -10,6 +10,12 @@
 </head>
 <body>
     <script>
+
+        function checkLoginState() {
+          FB.getLoginStatus(function(response) {
+            statusChangeCallback(response);
+          });
+        }
         // This is called with the results from from FB.getLoginStatus().
         function statusChangeCallback(response) {
           console.log('statusChangeCallback');
