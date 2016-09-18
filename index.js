@@ -31,11 +31,12 @@ INSERT INTO accounts (firstname, lastname, username, phonenumber, email)
 VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 */
 
-app.get('/', function (req, res) {
-  
+app.post('/user', function (req, res) {
+  console.log("FUCK : ", req.body);
 });
 
 app.post('/login', function(req, res) {
+  console.log(req);
   try {
     var userId = req.body.userId;
     var authToken = req.body.authToken;
