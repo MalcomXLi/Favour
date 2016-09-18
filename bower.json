@@ -1,0 +1,25 @@
+{
+  "name": "favour",
+  "description": "uber for general tasks",
+  "main": "index.js",
+  "authors": [
+    "Jonathan Wen <jonathanwen95@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/MalcomXLi/Favour",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.5.8",
+    "html5-boilerplate": "^5.3.0",
+    "angular-route": "^1.5.8",
+    "bootstrap": "^3.3.7"
+  }
+}

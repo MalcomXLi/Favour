@@ -3,21 +3,20 @@ var router = express.Router();
 var async = require('async');
 var pg = require('pg');
 var bodyParser = require('body-parser');
-var passport = require('passport-facebook');
 var port = process.env.PORT || 8000;
+var path = require('path');
 
 var app = express();
 
-var FACEBOOK_APP_ID = 185577565209272;
-var FACEBOOK_APP_SECRET = '73bd80a50f7ac73b518c5721eca001b1';
 var connectionString = process.env.DATABASE_URL || 'postgresql://root@104.196.183.161:26257?sslmode=disable';
 var client = new pg.Client(connectionString);
-console.log(connectionString);
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 /*
 CREATE TABLE accounts( 
@@ -31,27 +30,15 @@ INSERT INTO accounts (firstname, lastname, username, phonenumber, email)
 VALUES ('jonathan', 'wen', 'jonathanwen', '4167128801', 'jwen@jwen.ca');
 */
 
-// passport.use(new FacebookStrategy({
-//     clientID: FACEBOOK_APP_ID,
-//     clientSecret: FACEBOOK_APP_SECRET,
-//     callbackURL: "http://localhost:3000/auth/facebook/callback"
-//   },
-//   function(accessToken, refreshToken, profile, cb) {
-//     User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-//       return cb(err, user);
-//     });
-//   }
-// ));
-
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  // res.send('Hello World!');
 });
 
-app.post('/findPerson', function(req, res) {
+app.post('/login', function(req, res) {
   try {
     var userId = req.body.userId;
     var authToken = req.body.authToken;
-    
+    p
   } catch(e) {
     console.log('error', e);
   }
